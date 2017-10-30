@@ -1,0 +1,15 @@
+body{
+   padding-top: 60px;
+ }
+
+div {
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+  font: italic 200% fantasy;
+}
+
+label { display: block;
+ }
