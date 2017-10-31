@@ -7,7 +7,7 @@ The app will enable users to:
 <li>Create, view, update and delete recipe categories
 <li>Create, view, update or delete recipes in existing categories
 
-
+<p>
 To test the application and get it running, do the following:
 
 Install virtualenv and virtualenvwrapper (Make sure to have pip installed already)
@@ -28,15 +28,15 @@ Install virtualenv and virtualenvwrapper (Make sure to have pip installed alread
 Install the requirements file for all the dependencies of the application
 
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 Run the application
 
 ```
-python run.py
+$ python run.py
 ```
-Open this linl on your browser to view the application
+Open this link on your browser to view the application
 
 ```
 http://localhost:5000
