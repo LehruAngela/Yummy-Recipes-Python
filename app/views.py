@@ -49,7 +49,7 @@ def login():
     return render_template('login.html');
 
 
-@app.route('/<loggedin_user>/shoppinglists')
+@app.route('/<loggedin_user>/recipeCategories')
 def viewRecipeCategories(loggedin_user):
     """Method to view user's shopping list"""
     if 'email' in session:
