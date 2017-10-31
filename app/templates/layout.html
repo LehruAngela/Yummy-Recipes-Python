@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{title}}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet", type="text/css">
+  </head>
+  <body background="{{ url_for('static', filename='img/image.jpg') }}">
+    <header>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+          <div class="navbar-header">
+              <a class="navbar-brand topnav" href="#">Yummy Recipes</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/{{ username }}/shoppinglists">View Categories</a></li>
+                <li><a href="/{{ username }}/create">Add Category</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a><i class="fa fa-user"></i>  Hi, {{ username }}</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section>
+    <div class="wrapper">
+      {% block heading %}
+        <h2>{% block page %}{% endblock %}</h2>
+      {% endblock %}
+      {% block body %}
+      {% endblock %}
+    </div>
+    </section>
+    </br>
+   <footer>
+     <p class="copyright text-muted small">Copyright © Gela 2017.</p>
+   </footer>
+  </body>
+</html>
