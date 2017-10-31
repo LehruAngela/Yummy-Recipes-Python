@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}Yummy Recipes{% endblock %}
+
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        <br/>
+        {% if recipe_categories: %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-bordered" id = "table1">
+              <thead>
+                <tr>
+                  <th width="15%"> Name </th>
+                  <th width="15%"> Edit </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for index in range(num) %}
+                <tr>
+                  <td><a href="/recipeCategory/{{ index }}/recipes">{{ recipe_categories[index].name }}</a> </td>
+                  <td>
+                  <a href="#">
+                      <i class="fa fa-pencil"></i> Edit
+                    </a>
+                  </td>
+                  <td>
+                  <a href="#">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="text-align: center">
+            <p>You dont have any recipe categories yet.</p>
+            <hr class="intro-divider">
+        {% endif %}
+        <div style="text-align: center">
+        <a href="/{{ username }}/create" class="btn btn-default btn-lg">
+           <i class="fa fa-plus"></i>
+           Add Category
+         </a>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
