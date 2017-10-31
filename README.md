@@ -1,4 +1,4 @@
-# Yummy-Recipes
+## Yummy-Recipes
  The innovative yummy recipes app is an application that allows users  to create, save and share recipes, meeting the needs of keeping track of awesome food recipes.
 	
 
