@@ -3,7 +3,11 @@ class RecipeApp(object):
         self.users_dict = {}
 
     def signup(self, user):
-        self.users_dict[user.email] = user
+        if user.email in self.users_dict.keys():
+            return False
+        else:
+            self.users_dict[user.email] = user
+            return True
 
     def login(self, email, password):
         """method to login in registered users"""
