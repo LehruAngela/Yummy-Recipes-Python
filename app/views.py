@@ -3,12 +3,13 @@ from app import app
 from models.user import User
 from models.recipeCategory import RecipeCategory
 from models.recipe import Recipe
+from models.recipeApp import RecipeApp
 
 import os
 
 app.secret_key=os.urandom(24)
 
-users = {}
+users = RecipeApp()
 
 @app.route('/')
 def index():
@@ -26,11 +27,11 @@ def signup():
         email = request.form['email'];
         password = request.form['password'];
 
-        if email in users.keys():
+        if email in users.users_dict.keys():
             return redirect(url_for('signup'), error_msg="User already exists")
         else:
             user = User(username, email, password)
-            users[user.email] = user
+            users.signup(user)
             return redirect(url_for('login'))
     return render_template('signup.html');
 
@@ -40,12 +41,10 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        verify = users.get(email,False)
-        if email == verify.email:
-            if password == verify.password:
-                session['email'] = email
-                username = verify.username
-                return redirect(url_for('viewRecipeCategories', loggedin_user=username))
+        if users.login(email, password):
+            session['email'] = email
+            username = users.users_dict.get(email,False).username
+            return redirect(url_for('viewRecipeCategories', loggedin_user=username))
     return render_template('login.html');
 
 
@@ -53,7 +52,7 @@ def login():
 def viewRecipeCategories(loggedin_user):
     """Method to view user's shopping list"""
     if 'email' in session:
-        user = users[session['email']]
+        user = users.users_dict[session['email']]
         recipe_categories = user.view_recipe_categories()
         return render_template('viewCategories.html',
                                recipe_categories = recipe_categories,
@@ -66,7 +65,7 @@ def createRecipeCategory(loggedin_user):
     """Method for user to create shopping list"""
     if 'email' not in session:
         return render_template('login.html')
-    user = users[session['email']]
+    user = users.users_dict[session['email']]
     if request.method == 'POST':
         name = request.form['category_name']
         recipe_category = RecipeCategory(name)
@@ -80,7 +79,7 @@ def addRecipesToCategory(num):
     """Method for user to add items to shopping list"""
     if 'email' not in session:
         return render_template('login.html')
-    user = users[session['email']]
+    user = users.users_dict[session['email']]
     category_name=user.recipe_categories[int(num)].name
     if request.method == 'POST':
         name = request.form['recipe_name']
@@ -96,7 +95,7 @@ def viewRecipes(num):
     """Method to view items in shopping list"""
     if 'email' not in session:
         return render_template('login.html')
-    user = users[session['email']]
+    user = users.users_dict[session['email']]
     category_name=user.recipe_categories[int(num)].name
     recipes = user.recipe_categories[int(num)].view_recipes()
     return render_template('viewRecipes.html', recipes=recipes,
