@@ -3,6 +3,7 @@ class RecipeApp(object):
         self.users_dict = {}
 
     def signup(self, user):
+        """method to signup users"""
         if user.email in self.users_dict.keys():
             return False
         else:
