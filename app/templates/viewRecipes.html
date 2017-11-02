@@ -27,18 +27,18 @@
                 </tr>
               </thead>
               <tbody>
-                {% for index in range(recipe_num) %}
+                {% for index in range(recipe_len) %}
                 <tr>
                   <td> {{ recipes[index].name }}</td>
                   <td> {{ recipes[index].ingredients }}</td>
                   <td> {{ recipes[index].directions }}</td>
                   <td>
-                    <a href="#">
+                    <a href="/recipeCategory/{{ category_index}}/recipe/{{ index}}/update">
                       <i class="fa fa-pencil"></i> Edit
                     </a>
                   </td>
                   <td>
-                    <a href="#>
+                    <a href="/{{category_index}}/{{index}}/delete">
                       <i class="fa fa-trash"></i> Delete
                     </a>
                   </td>
@@ -47,11 +47,11 @@
               </tbody>
             </table>
             <div style="text-align: center">
-            <a href="/recipeCategory/{{ category_index }}"><button>Add more items</button></a>
+            <a href="/recipeCategory/{{ category_index }}"><button>Add more recipes</button></a>
           {% else %}
           <div style="text-align: center">
             <p>{{ recipeCategory }} shopping list is empty.</p>
-            <a href="/recipeCategory/{{ category_index }}"><button>Add items</button></a>
+            <a href="/recipeCategory/{{ category_index }}"><button>Add recipes</button></a>
             <hr class="intro-divider">
         </div>
         </div>
