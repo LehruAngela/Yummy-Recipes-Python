@@ -4,10 +4,6 @@
 [![Code Climate][CC img]][Code Climate]
 [![Coverage Status][CS img]][Coverage Status]
 
-## Description
-
-TODO: Your gem description
-
 [Build Status]: https://travis-ci.org/elgalu/boolean_class
 [Code Climate]: https://codeclimate.com/github/elgalu/boolean_class
 [Coverage Status]: https://coveralls.io/r/elgalu/boolean_class
