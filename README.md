@@ -1,4 +1,9 @@
 ## Yummy-Recipes
+
+[![Build Status][https://travis-ci.org/elgalu/boolean_class.png ]][https://travis-ci.org/elgalu/boolean_class]
+[![Code Climate][https://codeclimate.com/github/elgalu/boolean_class.png]][https://codeclimate.com/github/elgalu/boolean_class]
+[![Coverage Status][https://coveralls.io/repos/elgalu/boolean_class/badge.png?branch=master]][https://coveralls.io/r/elgalu/boolean_class]
+
  The innovative yummy recipes app is an application that allows users  to create, save and share recipes, meeting the needs of keeping track of awesome food recipes.
 	
 
