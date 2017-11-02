@@ -1,8 +1,20 @@
 ## Yummy-Recipes
 
-[![Build Status][https://travis-ci.org/elgalu/boolean_class.png ]][https://travis-ci.org/elgalu/boolean_class]
-[![Code Climate][https://codeclimate.com/github/elgalu/boolean_class.png]][https://codeclimate.com/github/elgalu/boolean_class]
-[![Coverage Status][https://coveralls.io/repos/elgalu/boolean_class/badge.png?branch=master]][https://coveralls.io/r/elgalu/boolean_class]
+[![Build Status][BS img]][Build Status]
+[![Code Climate][CC img]][Code Climate]
+[![Coverage Status][CS img]][Coverage Status]
+
+## Description
+
+TODO: Your gem description
+
+[Build Status]: https://travis-ci.org/elgalu/boolean_class
+[Code Climate]: https://codeclimate.com/github/elgalu/boolean_class
+[Coverage Status]: https://coveralls.io/r/elgalu/boolean_class
+
+[BS img]: https://travis-ci.org/elgalu/boolean_class.png
+[CC img]: https://codeclimate.com/github/elgalu/boolean_class.png
+[CS img]: https://coveralls.io/repos/elgalu/boolean_class/badge.png?branch=master
 
  The innovative yummy recipes app is an application that allows users  to create, save and share recipes, meeting the needs of keeping track of awesome food recipes.
 	
