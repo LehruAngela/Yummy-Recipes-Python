@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 from app import app
-from app.models.user import User
-from app.models.recipeCategory import RecipeCategory
-from app.models.recipe import Recipe
-from app.models.recipeApp import RecipeApp
+from models.user import User
+from models.recipeCategory import RecipeCategory
+from models.recipe import Recipe
+from models.recipeApp import RecipeApp
 
 import os
 
@@ -168,6 +168,31 @@ def delete_recipe_from_category(category_index, recipe_id):
         return redirect(url_for('view_recipes', category_index=category_index))
     except ValueError:
         return redirect(url_for('view_recipes', category_index=category_index))
+
+
+@app.route('/<user_x>/publicRecipes', methods=['POST', 'GET'])
+def public_recipes(user_x):
+    """Method to view public recipes"""
+    if 'email' not in session:
+        return render_template('login.html')
+    user = users.users_dict[session['email']]
+    recipes = user.view_public_recipes()
+    return render_template('viewPublicRecipes.html', recipes=recipes, public_len=len(user.public_dict), username=user.username, title = 'Public Recipes')
+
+
+@app.route('/<user_x>/create_public_recipe', methods=['POST', 'GET'])
+def create_public_recipes(user_x):
+    """Method to create public recipes"""
+    if 'email' not in session:
+        return render_template('login.html')
+    user = users.users_dict[session['email']]
+    if request.method == 'POST':
+        name = request.form['name']
+        ingredients = request.form['ingredients']
+        directions = request.form['directions']
+        user.create_public_recipe(Recipe(name, ingredients, directions))
+        return redirect(url_for('public_recipes', user_x=user.username))
+    return render_template('createPublicRecipe.html', username=user.username, title = 'Add Recipe')
 
 
 @app.route('/logout')
