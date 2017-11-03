@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}Yummy Recipes{% endblock %}
+
+{% block page %}{{title}} to Public platform{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+<div style="text-align: center">
+  <div class="content-section">
+    <div class="center">
+      </br>
+      <form method="post">
+        <div>
+          <label for="name">Name</label>
+          <input name="name" type="text" />
+        </div>
+        <div>
+          <label for="ingredients">Ingredients</label>
+          <input name="ingredients" type="text" />
+        </div>
+        <div>
+          <label for="directions">Directions</label>
+          <input name="directions" type="text" />
+        </div>
+        <div>
+          <button type="submit">Create Recipe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
