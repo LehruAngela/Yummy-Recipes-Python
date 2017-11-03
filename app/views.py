@@ -1,15 +1,16 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 from app import app
-from models.user import User
-from models.recipeCategory import RecipeCategory
-from models.recipe import Recipe
-from models.recipeApp import RecipeApp
+from app.models.user import User
+from app.models.recipeCategory import RecipeCategory
+from app.models.recipe import Recipe
+from app.models.recipeApp import RecipeApp
 
 import os
 
 app.secret_key=os.urandom(24)
 
 users = RecipeApp()
+
 
 @app.route('/')
 def index():
@@ -18,6 +19,7 @@ def index():
         username = users[email].username
         return redirect(url_for('view_recipe_categories', user_x = username))
     return redirect(url_for('signup'))
+
 
 @app.route('/signup', methods=['POST', 'GET'] )
 def signup():
@@ -31,6 +33,7 @@ def signup():
         if users.signup(user):
             return redirect(url_for('login'))
     return render_template('signup.html');
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -51,8 +54,7 @@ def view_recipe_categories(user_x):
     if 'email' in session:
         user = users.users_dict[session['email']]
         recipe_categories = user.view_recipe_categories()
-        return render_template('viewCategories.html',
-                               recipe_categories = recipe_categories,
+        return render_template('viewCategories.html', recipe_categories = recipe_categories,
                                username=user.username, category_index=len(recipe_categories), title = 'Your Categories')
     return render_template('login.html')
 
@@ -67,9 +69,9 @@ def create_recipe_category(user_x):
         name = request.form['category_name']
         recipe_category = RecipeCategory(name)
         user.create_recipe_category(recipe_category)
-        return redirect(url_for('add_recipe_to_category',
-                                category_index=len(user.recipe_categories)-1))
+        return redirect(url_for('add_recipe_to_category', category_index=len(user.recipe_categories)-1))
     return render_template('createCategory.html', username=user.username, title = 'Add Category')
+
 
 @app.route('/recipeCategory/<category_index>', methods=['POST', 'GET'])
 def add_recipe_to_category(category_index):
@@ -79,7 +81,7 @@ def add_recipe_to_category(category_index):
     user = users.users_dict[session['email']]
     category_name=user.recipe_categories[int(category_index)].name
     if request.method == 'POST':
-        name = request.form['recipe_name']
+        name = request.form['name']
         ingredients = request.form['ingredients']
         directions = request.form['directions']
         user.recipe_categories[int(category_index)].add_recipe_to_recipe_category(Recipe(name, ingredients, directions))
@@ -96,49 +98,49 @@ def view_recipes(category_index):
     category_name=user.recipe_categories[int(category_index)].name
     recipes = user.recipe_categories[int(category_index)].view_recipes()
     return render_template('viewRecipes.html', recipes=recipes,
-                           category_name=category_name,
-                           recipe_index=len(recipes), category_index=category_index,
+                           recipeCategory=user.recipe_categories[int(category_index)].name,
+                           recipe_len=len(recipes), category_index=category_index,
                            username=user.username, title = 'Recipes')
 
 
-@app.route('/recipeCategory/<category_index>/update', methods=['POST', 'GET'])
-def update_recipe_category(category_index):
+@app.route('/recipeCategory/<category_id>/update', methods=['POST', 'GET'])
+def update_recipe_category(category_id):
     """Method for user to edit recipe category"""
     if 'email' not in session:
         return render_template('login.html')
     user = users.users_dict[session['email']]
     if request.method == 'POST':
         name = request.form['category_name']
-        user.recipe_categories[int(category_index)].name = name
+        user.recipe_categories[int(category_id)].name = name
         return redirect(url_for('view_recipe_categories',
                                 user_x=user.username))
-    return render_template('updateList.html',
+    return render_template('updateCategory.html',
                            username=user.username,
-                           category_name=user.recipe_categories[int(category_index)].name, title = 'Edit')
+                           category_name=user.recipe_categories[int(category_id)].name, title = 'Edit')
 
 
-@app.route('/<category_index>/delete')
-def delete_recipe_category(category_index):
+@app.route('/<category_id>/delete')
+def delete_recipe_category(category_id):
     """Method to delete recipe category"""
     if 'email' not in session:
         return render_template('login.html')
     try:
         user = users.users_dict[session['email']]
-        recipe_category = user.recipe_categories[int(category_index)]
+        recipe_category = user.recipe_categories[int(category_id)]
         user.delete_recipe_category(recipe_category)
         return redirect(url_for('view_recipe_categories', user_x=user.username))
     except ValueError:
         return redirect(url_for('view_recipe_categories', user_x=user.username))
 
 
-@app.route('/recipeCategory/<category_index>/recipe/<recipe_index>/update', methods=['POST', 'GET'])
-def update_recipes(category_index, recipe_index):
+@app.route('/recipeCategory/<category_index>/recipe/<recipe_id>/update', methods=['POST', 'GET'])
+def update_recipes(category_index, recipe_id):
     """Method for user to add items to shopping list"""
     if 'email' not in session:
         return render_template('login.html')
     user = users.users_dict[session['email']]
     recipe_category = user.recipe_categories[int(category_index)]
-    recipe = recipe_category.recipes[int(recipe_index)]
+    recipe = recipe_category.recipes[int(recipe_id)]
     if request.method == 'POST':
         new_name = request.form['name']
         new_ingredients = request.form['ingredients']
@@ -149,21 +151,19 @@ def update_recipes(category_index, recipe_index):
         recipe.quantity = new_ingredients
 
         return redirect(url_for('view_recipes', category_index=category_index))
-    return render_template('updateItems.html',username=user.username, name=recipe.name,
+    return render_template('updateRecipe.html',username=user.username, name=recipe.name,
                             ingredients=recipe.ingredients, directions=recipe.directions,title = 'Edit Recipe')
 
 
-
-
-@app.route('/<category_index>/<recipe_index>/delete')
-def delete_recipe_from_category(category_index, recipe_index):
+@app.route('/<category_index>/<recipe_id>/delete')
+def delete_recipe_from_category(category_index, recipe_id):
     """Method to delete recipe from recipe category"""
     if 'email' not in session:
         return render_template('login.html')
     try:
         user = users.users_dict[session['email']]
         recipe_category = user.recipe_categories[int(category_index)]
-        recipe = recipe_category.recipes[int(recipe_index)]
+        recipe = recipe_category.recipes[int(recipe_id)]
         recipe_category.delete_recipe(recipe)
         return redirect(url_for('view_recipes', category_index=category_index))
     except ValueError:

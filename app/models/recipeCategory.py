@@ -9,7 +9,7 @@ class RecipeCategory(object):
         """add a recipe to a recipe category"""
         self.recipes.append(recipe)
 
-    def delete_recipe_from_recipe_category(self, recipe):
+    def delete_recipe(self, recipe):
         """delete a recipe from recipe category"""
         if len(self.recipes) > 0 and recipe in self.recipes:
             self.recipes.remove(recipe)

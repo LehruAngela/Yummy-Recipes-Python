@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Yummy Recipes{% endblock %}
+
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+<div style="text-align: center">
+  <div class="content-section">
+    <div class="center">
+      </br>
+      <form method="post" id="forms">
+        <div>
+          <label for="name">Name</label>
+          <input name="category_name" type="text"  value="{{ category_name }}" />
+        </div>
+       </br>
+        <div>
+          <button type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

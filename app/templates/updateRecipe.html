@@ -14,18 +14,18 @@
       <form method="post">
         <div>
           <label for="name">Name</label>
-          <input name="name" type="text" />
+          <input name="name" type="text" value="{{ name }}"/>
         </div>
         <div>
           <label for="ingredients">Ingredients</label>
-          <input name="ingredients" type="text" />
+          <input name="ingredients" type="text" value="{{ ingredients }}"/>
         </div>
         <div>
           <label for="directions">Directions</label>
-          <input name="directions" type="text" />
+          <input name="directions" type="text" value="{{ directions }}"/>
         </div>
         <div>
-          <button type="submit">Add Recipe</button>
+          <button type="submit">Update Recipe</button>
         </div>
       </form>
     </div>

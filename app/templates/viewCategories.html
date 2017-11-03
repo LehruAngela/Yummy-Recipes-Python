@@ -20,21 +20,21 @@
               <thead>
                 <tr>
                   <th width="15%"> Name </th>
-                  <th width="15%"> Edit </th>
-                  <th width="15%"> Delete </th>
+                  <th width="7%"> Edit </th>
+                  <th width="7%"> Delete </th>
                 </tr>
               </thead>
               <tbody>
-              {% for index in range(num) %}
+              {% for index in range(category_index) %}
                 <tr>
                   <td><a href="/recipeCategory/{{ index }}/recipes">{{ recipe_categories[index].name }}</a> </td>
                   <td>
-                  <a href="#">
+                  <a href="/recipeCategory/{{ index }}/update">
                       <i class="fa fa-pencil"></i> Edit
                     </a>
                   </td>
                   <td>
-                  <a href="#">
+                  <a href="/{{ index }}/delete">
                       <i class="fa fa-trash"></i> Delete
                     </a>
                   </td>

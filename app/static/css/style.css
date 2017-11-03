@@ -1,4 +1,4 @@
-body{
+body {
   padding-top: 60px;
  }
 
@@ -6,7 +6,7 @@ div {
   text-align: center;
  }
 
-h2{
+h2 {
   text-align: center;
   font: italic 200% fantasy;
   color: white;
@@ -23,6 +23,15 @@ table#table1 {
 	 margin-right:15%;
    color: white;
  }
+
 p {
   color: white;
-}
+ }
+
+a {
+  color: yellow;
+ }
+
+button {
+  color: black;
+ }
