@@ -22,19 +22,18 @@
                   <th width="15%"> Recipe </th>
                   <th width="15%"> Ingredients </th>
                   <th width="15%"> Directions </th>
-                  <th width="7%"> Edit </th>
-                  <th width="7%"> Delete </th>
+                  <th width="7%"> Like </th>
                 </tr>
               </thead>
               <tbody>
-                {% for index in range(recipe_len) %}
+                {% for index in range(public_len) %}
                 <tr>
                   <td> {{ recipes[index].name }}</td>
                   <td> {{ recipes[index].ingredients }}</td>
                   <td> {{ recipes[index].directions }}</td>
                   <td>
                     <a href="/public/{{ index}}/like">
-                      <i class="fa-li fa fa-check-square"></i> Like
+                      <i class="fa fa-check-square"></i> Like
                     </a>
                   </td>
                 </tr>
@@ -42,11 +41,11 @@
               </tbody>
             </table>
             <div style="text-align: center">
-            <a href="/create_public_recipe"><button>Add more recipes</button></a>
+            <a href="/{{ username }}/create_public_recipe"><button>Add more recipes</button></a>
           {% else %}
           <div style="text-align: center">
             <p>There are no public recipes posted</p>
-            <a href="/create_public_recipe"><button>Add recipe</button></a>
+            <a href="/{{ username }}/create_public_recipe"><button>Add recipe</button></a>
             <hr class="intro-divider">
         </div>
         </div>
