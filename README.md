@@ -4,13 +4,13 @@
 [![Code Climate][CC img]][Code Climate]
 [![Coverage Status][CS img]][Coverage Status]
 
-[Build Status]: https://travis-ci.org/elgalu/boolean_class
-[Code Climate]: https://codeclimate.com/github/elgalu/boolean_class
-[Coverage Status]: https://coveralls.io/r/elgalu/boolean_class
+[Build Status]: https://travis-ci.org/LehruAngela/Yummy-Recipes
+[Code Climate]: https://codeclimate.com/github/LehruAngela/Yummy-Recipes
+[Coverage Status]: https://coveralls.io/r/LehruAngela/Yummy-Recipes
 
-[BS img]: https://travis-ci.org/elgalu/boolean_class.png
-[CC img]: https://codeclimate.com/github/elgalu/boolean_class.png
-[CS img]: https://coveralls.io/repos/elgalu/boolean_class/badge.png?branch=master
+[BS img]: https://travis-ci.org/LehruAngela/Yummy-Recipes.png
+[CC img]: https://codeclimate.com/github/LehruAngela/Yummy-Recipes.png
+[CS img]: https://coveralls.io/repos/LehruAngela/Yummy-Recipes/badge.png?branch=master
 
  The innovative yummy recipes app is an application that allows users  to create, save and share recipes, meeting the needs of keeping track of awesome food recipes.
 	
