@@ -1,6 +1,6 @@
 class User(object):
     """class for user attributes and methods"""
-    def __init__(self, username, email, password, recipe_categories=None):
+    def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
