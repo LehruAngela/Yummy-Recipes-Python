@@ -1,6 +1,7 @@
 ## Yummy-Recipes
 [![Build Status](https://travis-ci.org/LehruAngela/Yummy-Recipes.png)](https://travis-ci.org/LehruAngela/Yummy-Recipes)
 [![Code Climate](https://codeclimate.com/github/LehruAngela/Yummy-Recipes.png)](https://codeclimate.com/github/LehruAngela/Yummy-Recipes)
+[![Coverage Status](https://coveralls.io/repos/github/LehruAngela/Yummy-Recipes/badge.svg?branch=master)](https://coveralls.io/github/LehruAngela/Yummy-Recipes?branch=master)
 
 
 
