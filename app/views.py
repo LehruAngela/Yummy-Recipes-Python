@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 from app import app
-from models.user import User
-from models.recipeCategory import RecipeCategory
-from models.recipe import Recipe
-from models.recipeApp import RecipeApp
+from app.models.user import User
+from app.models.recipeCategory import RecipeCategory
+from app.models.recipe import Recipe
+from app.models.recipeApp import RecipeApp
 
 import os
 
