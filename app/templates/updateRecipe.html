@@ -14,15 +14,15 @@
       <form method="post">
         <div>
           <label for="name">Name</label>
-          <input name="name" type="text" value="{{ name }}"/>
+          <input name="name" type="text" value="{{ name }}" required/>
         </div>
         <div>
           <label for="ingredients">Ingredients</label>
-          <input name="ingredients" type="text" value="{{ ingredients }}"/>
+          <input name="ingredients" type="text" value="{{ ingredients }}" required/>
         </div>
         <div>
           <label for="directions">Directions</label>
-          <input name="directions" type="text" value="{{ directions }}"/>
+          <input name="directions" type="text" value="{{ directions }}" required/>
         </div>
         <div>
           <button type="submit">Update Recipe</button>

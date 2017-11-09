@@ -1,9 +1,10 @@
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import Flask, render_template, redirect, url_for, session, request, flash
 from app import app
-from app.models.user import User
-from app.models.recipeCategory import RecipeCategory
-from app.models.recipe import Recipe
-from app.models.recipeApp import RecipeApp
+from models.user import User
+from models.recipeCategory import RecipeCategory
+from models.recipe import Recipe
+from models.recipeApp import RecipeApp
+
 
 import os
 
@@ -23,20 +24,25 @@ def index():
 
 @app.route('/signup', methods=['POST', 'GET'] )
 def signup():
+    error = None
     if request.method == 'POST':
         # read form data and save it
         username = request.form['username'];
         email = request.form['email'];
         password = request.form['password'];
+        confirmpassword = request.form['cpassword'];
 
-        user = User(username, email, password)
-        if users.signup(user):
-            return redirect(url_for('login'))
-    return render_template('signup.html');
+        if password == confirmpassword:
+            user = User(username, email, password)
+            if users.signup(user):
+                return redirect(url_for('login'))
+        error = "Passwords do not match"
+    return render_template('signup.html', error=error);
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    error = None
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -45,7 +51,8 @@ def login():
             session['email'] = email
             username = users.users_dict.get(email,False).username
             return redirect(url_for('view_recipe_categories', user_x=username))
-    return render_template('login.html');
+        error = "Invalid email or password"
+    return render_template('login.html', error=error);
 
 
 @app.route('/<user_x>/recipeCategories')
@@ -69,6 +76,7 @@ def create_recipe_category(user_x):
         name = request.form['category_name']
         recipe_category = RecipeCategory(name)
         user.create_recipe_category(recipe_category)
+        flash('You have successfully created category')
         return redirect(url_for('add_recipe_to_category', category_index=len(user.recipe_categories)-1))
     return render_template('createCategory.html', username=user.username, title = 'Add Category')
 
@@ -85,6 +93,7 @@ def add_recipe_to_category(category_index):
         ingredients = request.form['ingredients']
         directions = request.form['directions']
         user.recipe_categories[int(category_index)].add_recipe_to_recipe_category(Recipe(name, ingredients, directions))
+        flash('You were successfully added recipes to your category')
         return redirect(url_for('view_recipes',category_index=category_index))
     return render_template('addRecipesToCategory.html', username=user.username, title = 'Add recipes', category_name = category_name)
 
@@ -112,6 +121,7 @@ def update_recipe_category(category_id):
     if request.method == 'POST':
         name = request.form['category_name']
         user.recipe_categories[int(category_id)].name = name
+        flash('You have successfully updated')
         return redirect(url_for('view_recipe_categories',
                                 user_x=user.username))
     return render_template('updateCategory.html',
@@ -149,7 +159,7 @@ def update_recipes(category_index, recipe_id):
         recipe.name = new_name
         recipe.quantity = new_ingredients
         recipe.quantity = new_ingredients
-
+        flash('You have successfully updated recipes')
         return redirect(url_for('view_recipes', category_index=category_index))
     return render_template('updateRecipe.html',username=user.username, name=recipe.name,
                             ingredients=recipe.ingredients, directions=recipe.directions,title = 'Edit Recipe')

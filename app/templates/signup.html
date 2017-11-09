@@ -23,20 +23,23 @@
           </br>
           <form method="post">
             <div>
+              {% if error != None %}
+                {{error}}
+              {% endif %}
               <label for="username">Username</label>
-              <input name="username" type="text" />
+              <input name="username" type="text" required/>
             </div>
             <div>
               <label for="email">Email</label>
-              <input name="email" type="email" />
+              <input name="email" type="email" required/>
             </div>
             <div>
               <label for="password">Password</label>
-              <input name="password" type="password" />
+              <input name="password" type="password" required/>
             </div>
             <div>
-              <label for="confirm_password">Confirm Password</label>
-              <input name="confirm_password" type="password" />
+              <label for="cpassword">Confirm Password</label>
+              <input name="cpassword" type="password" required/>
             </div>
             </br>
             <div>
