@@ -1,5 +1,7 @@
 body {
   padding-top: 60px;
+  background-image:url("/static/img/meksika.jpg");
+
  }
 
 div {
@@ -9,27 +11,48 @@ div {
 h2 {
   text-align: center;
   font: italic 200% fantasy;
-  color: white;
+  color: black;
  }
+
+#banner {
+   display:block;
+   margin:0 auto;
+   width: 30%;
+   /*background-image: url("/static/img/recipe15.jpg");*/
+   background-color: rgba(255, 255, 255, 0.6);
+   height: 405px;
+   background-position: center;
+ }
+
+#banner1 {
+    display:block;
+    margin:0 auto;
+    width: 50%;
+    /*background-image: url("/static/img/recipe15.jpg");*/
+    background-color: rgba(255, 255, 255, 0.95);
+    height: 505px;
+    background-position: center;
+  }
+
 
 label {
   display: block;
-  color: white;
+  color: black;
  }
 
 table#table1 {
 	 width:70%;
 	 margin-left:15%;
 	 margin-right:15%;
-   color: white;
+   color: black;
  }
 
 p {
-  color: white;
+  color: black;
  }
 
 a {
-  color: yellow;
+  color: green;
  }
 
 button {

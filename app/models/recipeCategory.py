@@ -3,7 +3,7 @@ class RecipeCategory(object):
 
     def __init__(self, name, recipes=None):
         self.name = name
-        self.recipes = recipes or []
+        self.recipes = recipes or [] #list of recipes contained in the recipes
 
     def add_recipe_to_recipe_category(self, recipe):
         """add a recipe to a recipe category"""

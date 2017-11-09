@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block title %}Yummy Recipes{% endblock %}
+
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        <br/>
+        {% if recipes: %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-bordered" id="table1">
+              <thead>
+                <tr>
+                  <th width="15%"> Recipe </th>
+                  <th width="15%"> Ingredients </th>
+                  <th width="15%"> Directions </th>
+                  <th width="7%"> Like </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for index in range(public_len) %}
+                <tr>
+                  <td> {{ recipes[index].name }}</td>
+                  <td> {{ recipes[index].ingredients }}</td>
+                  <td> {{ recipes[index].directions }}</td>
+                  <td>
+                    <a href="/public/{{ index}}/like">
+                      <i class="fa fa-check-square"></i> Like
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            <div style="text-align: center">
+            <a href="/{{ username }}/create_public_recipe"><button>Add more recipes</button></a>
+          {% else %}
+          <div style="text-align: center">
+            <p>There are no public recipes posted</p>
+            <a href="/{{ username }}/create_public_recipe"><button>Add recipe</button></a>
+            <hr class="intro-divider">
+        </div>
+        </div>
+        </div>
+        </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

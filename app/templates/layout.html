@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet", type="text/css">
   </head>
-  <body background="{{ url_for('static', filename='img/image.jpg') }}">
+  <body background="{{ url_for('static', filename='img/123.jpg') }}">
     <header>
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -26,6 +26,7 @@
         </div>
       </nav>
     </header>
+   <div id="banner1">
     <section>
     <div class="wrapper">
       {% block heading %}
@@ -35,6 +36,7 @@
       {% endblock %}
     </div>
     </section>
+   </div>
     </br>
    <footer>
      <p class="copyright text-muted small">Copyright © Gela 2017.</p>
